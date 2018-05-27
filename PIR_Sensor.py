@@ -5,12 +5,11 @@ import datetime
 gpio.setmode(gpio.BCM)
 gpio.setup(3, gpio.IN)
 
-calibration=15
-lockLow = True
-takeLowTime = False
-inBetween = False
-
-
+sensor= "Collision Sensor"
+calibration = 10
+remarks = ""
+value = ""
+motion_detected = False
 
 for x in range(0,calibration):
     time.sleep(.1)
@@ -20,11 +19,24 @@ print("calibration complete.")
 
 try:
     while True:
+        ts = time.time()
+        st = str(datetime.datetime.now())
+        
         input_value = gpio.input(3)
         if (input_value == True):
-            ts = time.time()
-            st = str(datetime.datetime.utcnow())
-            print('Motion detected at .. ', st)
+            if (motion_detected is False):
+                start = time.time()
+                print(sensor,',', st,',', remarks,',',value)
+            
+            motion_detected = True
+
+        else:
+            if (motion_detected):
+                end = time.time()
+                print("motion ended at ", st, "-- ", end - start, "elapsed")
+                
+            motion_detected = False
+            
 	
 
 except KeyboardInterrupt:
