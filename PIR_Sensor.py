@@ -11,6 +11,10 @@ remarks = ""
 value = ""
 motion_detected = False
 remarks = ["active","inactive"]
+
+fh = open("wew.txt","a")
+fh_read = open("wew.txt","r")
+print(fh_read.readline())
 for x in range(0,calibration):
     time.sleep(.1)
     print("calibrating.. ")
@@ -27,7 +31,10 @@ try:
             if (motion_detected is False):
                 value=1
                 start = time.time()
-                print(sensor,',', st,',', remarks[0],',',value)
+                
+                log = sensor,',', st,',', remarks[0],',',value
+                print(str(log))
+                fh.write(str(log))
             
             motion_detected = True
 
@@ -35,7 +42,9 @@ try:
             if (motion_detected):
                 value=0
                 end = time.time()
-                print("motion ended at ", st,',',remarks[1],',', value,"-- ", end - start, "elapsed")
+                log = "motion ended at ", st,',',remarks[1],',', value,"-- ", end - start, "elapsed"
+                print(log)
+                fh.write(str(log))
                 
             motion_detected = False
             
@@ -43,6 +52,6 @@ try:
 
 except KeyboardInterrupt:
     print("program complete! ")
-
+fh.close()
 gpio.cleanup()
 
