@@ -1,1 +1,24 @@
-('Collision Sensor', ',', '2018-05-27 09:01:23.701835', ',', 'active', ',', 1)('motion ended at ', '2018-05-27 09:01:24.686830', ',', 'inactive', ',', 0, '-- ', 0.9849944114685059, 'elapsed')('Collision Sensor', ',', '2018-05-27 09:01:25.318188', ',', 'active', ',', 1)('motion ended at ', '2018-05-27 09:01:25.943899', ',', 'inactive', ',', 0, '-- ', 0.62571120262146, 'elapsed')('Collision Sensor', ',', '2018-05-27 09:01:26.392974', ',', 'active', ',', 1)('motion ended at ', '2018-05-27 09:01:27.067192', ',', 'inactive', ',', 0, '-- ', 0.674217700958252, 'elapsed')d')
+Collision Sensor,2018-05-27 16:44:43.041724,active,1
+Collision Sensor,2018-05-27 16:44:43.379292,inactive,0-- 0.337566614151001elapsed
+Collision Sensor,2018-05-27 16:44:59.337259,active,1
+Collision Sensor,2018-05-27 16:45:00.985316,inactive,0-- 1.6480565071105957elapsed
+Collision Sensor,2018-05-27 16:46:31.602565,active,1
+Collision Sensor,2018-05-27 16:46:31.674218,inactive,0--elapsed: 0.07165336608886719
+Collision Sensor,2018-05-27 16:46:33.500447,active,1
+Collision Sensor,2018-05-27 16:46:36.378334,inactive,0--elapsed: 2.877885580062866
+Collision Sensor,2018-05-27 16:46:37.328823,active,1
+Collision Sensor,2018-05-27 16:46:40.220404,inactive,0--elapsed: 2.8915812969207764
+Collision Sensor,2018-05-27 16:46:41.860504,active,1
+Collision Sensor,2018-05-27 16:46:43.929902,inactive,0--elapsed: 2.0693979263305664
+Collision Sensor,2018-05-27 16:46:44.902288,active,1
+Collision Sensor,2018-05-27 16:46:45.566242,inactive,0--elapsed: 0.6639542579650879
+Collision Sensor,2018-05-27 16:46:46.266927,active,1
+Collision Sensor,2018-05-27 16:46:49.494214,inactive,0--elapsed: 3.2272865772247314
+Collision Sensor,2018-05-27 16:46:50.771228,active,1
+Collision Sensor,2018-05-27 16:46:51.384634,inactive,0--elapsed: 0.6134068965911865
+Collision Sensor,2018-05-27 16:54:23.683576,active,1
+Collision Sensor,2018-05-27 16:54:24.183023,inactive,0--elapsed: 0.49944615364074707
+Collision Sensor,2018-05-27 16:57:08.410341,active,1
+Collision Sensor,2018-05-27 16:57:08.652509,inactive,0--elapsed: 0.24216747283935547
+Collision Sensor,2018-05-27 16:57:56.774974,active,1
+Collision Sensor,2018-05-27 16:57:58.781018,inactive,0--elapsed: 2.006044387817383
