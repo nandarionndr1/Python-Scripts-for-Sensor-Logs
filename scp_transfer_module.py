@@ -17,7 +17,7 @@ def scp_transfer():
     
     print("uploading in progress ... ")
     try:
-        child = pexpect.spawn("scp /home/pi/Desktop/PyLab/wew.txt server-PC@192.168.0.1:/Users/Leebet-PC/Desktop/dir")
+        child = pexpect.spawn("scp /home/pi/Desktop/PyLab/wew.txt Leebet@192.168.0.18:/Users/Leebet-PC/Desktop/dir")
         i = child.expect("assword:")
 
         print(i)
