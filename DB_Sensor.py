@@ -19,7 +19,7 @@ mydb = mysql.connector.connect(
         passwd="root",
         database="sensorDB"
         )
-curs = mysql.cursor()
+curs = mydb.cursor()
 sql ="INSERT INTO `sensorDB`.`logs` (`sensor_name`, `timestamp`, `value`) VALUES (%s, %s, %s);"
 def setup_pins(sensors):
     gpio.setmode(gpio.BCM)
