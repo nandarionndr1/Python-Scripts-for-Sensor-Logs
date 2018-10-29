@@ -7,11 +7,15 @@ from pathlib import Path
 
 sensors=[]
 #false value means unactivated.
-sensor1={"name":"Mag Switch S1","pin":2,"value":1}
-sensor2={"name":"Mag Switch S2","pin":3,"value":1}
+sensor1={"name":"Mag Switch S1","sid":1,"pin":2,"value":-1,"av":0}
+sensor2={"name":"Mag Switch S2","sid":2,"pin":3,"value":-1,"av":0}
+sensor3={"name":"Magswitch S3","sid":3,"pin":4,"value":-1,"av":0}
+sensor4={"name":"Collision Sensor","sid":4,"pin":5,"value":-1,"av":1}
 
 sensors.append(sensor1)
 sensors.append(sensor2)
+sensors.append(sensor3)
+sensors.append(sensor4)
 
 mydb = mysql.connector.connect(
         host="localhost",
@@ -20,32 +24,31 @@ mydb = mysql.connector.connect(
         database="sensorDB"
         )
 curs = mydb.cursor()
-sql ="INSERT INTO `sensorDB`.`logs` (`sensor_name`, `timestamp`, `value`) VALUES (%s, %s, %s);"
+sql ="INSERT INTO `sensorDB`.`sensor_log` (`log_id`,`sensor_id`, `timestamp`, `value`) VALUES (null, %s, %s, %s);"
 def setup_pins(sensors):
     gpio.setmode(gpio.BCM)
     for i in range(0, len(sensors)):
         cur_sensor = sensors[i]
-        gpio.setup(cur_sensor["pin"], gpio.IN)
-    
-        
+        gpio.setup(cur_sensor["pin"], gpio.IN,pull_up_down=gpio.PUD_UP)
+            
 def check_status(sensors):
     for i in range(0, len(sensors)):
+        av = 0
         ts = time.time()
         st = str(datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S"))
         cur_sensor = sensors[i]
         val_read = gpio.input(cur_sensor["pin"])
         if val_read is not cur_sensor["value"]:
-            val = (str(cur_sensor["name"],str(st),str(val_read))
-            #log = str(cur_sensor["name"]) +","+ str(st) +","+  str(val_read)
+            if val_read == cur_sensor["av"]:
+                av = 1
+            val = (str(cur_sensor["sid"]),str(st),str(av))
+            log = str(cur_sensor["name"]) +","+ str(st) +","+  str(av)
             sensors[i]["value"] = val_read
+            print(log)
             curs.execute(sql,val)
             mydb.commit()
-	    print(curs.rowcount," inserted done")
+            print(curs.rowcount," inserted done")
         time.sleep(0.1)
-
-
-remarks = ["active","inactive"] # list of possible remarks for a collision sensor
-
 
 try:
     setup_pins(sensors)
@@ -55,9 +58,7 @@ try:
         
 except KeyboardInterrupt:
     print("program complete! ")
-    #transfer()
 
-
-fh.close()
+#fh.close()
 gpio.cleanup()
 
