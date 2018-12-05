@@ -24,7 +24,7 @@ mydb = mysql.connector.connect(
         database="sensorDB"
         )
 curs = mydb.cursor()
-sql ="INSERT INTO `sensorDB`.`sensor_log` (`log_id`,`sensor_id`, `timestamp`, `value`) VALUES (null, %s, %s, %s);"
+sql ="INSERT INTO `sensorDB`.`logs` (`sensor_name`,`sensor_id`, `timestamp`, `value`) VALUES (%s, ,%s, %s, %s);"
 def setup_pins(sensors):
     gpio.setmode(gpio.BCM)
     for i in range(0, len(sensors)):
@@ -41,13 +41,12 @@ def check_status(sensors):
         if val_read is not cur_sensor["value"]:
             if val_read == cur_sensor["av"]:
                 av = 1
-            val = (str(cur_sensor["sid"]),str(st),str(av))
+            val = (str(cur_sensor["name"]),str(st),str(av))
             log = str(cur_sensor["name"]) +","+ str(st) +","+  str(av)
             sensors[i]["value"] = val_read
             print(log)
-#            curs.execute(sql,val)
-#            mydb.commit()
-#            print(curs.rowcount," inserted done")
+            curs.execute(sql,val)
+            mydb.commit(print(curs.rowcount," inserted done")
         time.sleep(0.1)
 
 try:

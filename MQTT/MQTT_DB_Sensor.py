@@ -4,6 +4,7 @@ import datetime
 import sys
 import mysql.connector
 from pathlib import Path
+from sensor_publish import publish
 
 sensors=[]
 #false value means unactivated.
@@ -42,9 +43,10 @@ def check_status(sensors):
             if val_read == cur_sensor["av"]:
                 av = 1
             val = (str(cur_sensor["sid"]),str(st),str(av))
-            log = str(cur_sensor["name"]) +","+ str(st) +","+  str(av)
+            log = str(cur_sensor["sid"]) +","+ str(st) +","+  str(av)
             sensors[i]["value"] = val_read
             print(log)
+            publish("ccm/rpi_1",log)
 #            curs.execute(sql,val)
 #            mydb.commit()
 #            print(curs.rowcount," inserted done")
